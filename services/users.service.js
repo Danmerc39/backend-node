@@ -1,11 +1,11 @@
 const { faker } = require('@faker-js/faker');
 const boom = require('@hapi/boom');
-const sequilize = require('../libs/sequelize');
-class ProductsService {
+const { models } = require('../libs/sequelize');
+class UsersService {
 
   constructor(){
     this.products = [];
-    this.generate();
+    // this.generate();
   }
 
   generate(){
@@ -21,9 +21,7 @@ class ProductsService {
   }
 
   async findAll(){
-    const query = 'SELECT * FROM tasks';
-    const [ data, metadata ] = await sequilize.query(query);
-    return data;
+    return await models.User.findAll()
   };
 
   async findOne(id){
@@ -67,4 +65,4 @@ class ProductsService {
   }
 }
 
-module.exports = ProductsService;
+module.exports = UsersService;
